@@ -29,7 +29,7 @@ export function ScriptVideoGenerator() {
   const generateScript = async (input: string) => {
     setIsLoading(true)
     try {
-      const response = await axios.post<ScriptResponse>('http://localhost:3000/api/generate-script', { input })
+      const response = await axios.post<ScriptResponse>('https://video-editor-backend.onrender.com/api/generate-script', { input })
       setGeneratedScript(response.data.data.expandedScript)
       setToken(response.data.data.accessToken)
       toast.success(response.data.message)
@@ -44,7 +44,7 @@ export function ScriptVideoGenerator() {
   const generateVideo = async () => {
     setIsLoading(true)
     try {
-      const response = await axios.post('http://localhost:3000/api/generate-video', { expandedScript: generatedScript,accessToken:token })
+      const response = await axios.post('https://video-editor-backend.onrender.com/api/generate-video', { expandedScript: generatedScript,accessToken:token })
       console.log("lkfdjlksdfjlkdfsjl:",response.data.data.status.preview)
       setVideoUrl(response.data.data.status.preview)
       toast.success('Video generated successfully')
